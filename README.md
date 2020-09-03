@@ -1,6 +1,7 @@
 # Python Version
 
 This repository will attempt to translate the below Arduino project to an RPi compatible burner.
+https://github.com/martinpalsson/GP2Y0E02B_E-Fuse_Burner
 
 # GP2Y0E02B_E-Fuse_Burner
 Burn E-fuses to permanently change device address on Sharp GP2Y0E02B and GP2Y0E03 sensors.
