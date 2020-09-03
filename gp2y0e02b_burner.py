@@ -1,4 +1,13 @@
 
+# ----------------------------------------------
+# Title:   gp2y0e02b_burner.py
+# Author:  Alp Sayin
+# Translated from: GP2Y0E02B_E-Fuse_Burner/E_FUSE.ino
+# Originally from: Martin Pålsson
+# Description: E-Fuse programmer for SHARP GP2Y0E02B, GP2Y0E03
+# -----------------------------------------------
+
+
 import random
 import time
 import traceback
