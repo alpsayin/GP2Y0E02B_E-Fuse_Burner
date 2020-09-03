@@ -1,3 +1,7 @@
+# Python Version
+
+This repository will attempt to translate the below Arduino project to an RPi compatible burner.
+
 # GP2Y0E02B_E-Fuse_Burner
 Burn E-fuses to permanently change device address on Sharp GP2Y0E02B and GP2Y0E03 sensors.
 
@@ -9,10 +13,6 @@ Burn E-fuses to permanently change device address on Sharp GP2Y0E02B and GP2Y0E0
     Don't try to give your sensor the slave-ID 0xF0, the
     sensor won't work with that slave-ID.
     Don't apply more than 3.3V to any of the sensors pads.
-    
-    Version Python
-    
-    This repository will attempt to translate Arduino project to an RPi compatible burner.
     
     Version 1
 
