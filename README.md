@@ -10,6 +10,10 @@ Burn E-fuses to permanently change device address on Sharp GP2Y0E02B and GP2Y0E0
     sensor won't work with that slave-ID.
     Don't apply more than 3.3V to any of the sensors pads.
     
+    Version Python
+    
+    This repository will attempt to translate Arduino project to an RPi compatible burner.
+    
     Version 1
 
     This program is for E-Fuse programming
