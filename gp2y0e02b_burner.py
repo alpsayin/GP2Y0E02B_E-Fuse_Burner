@@ -16,7 +16,6 @@ from math import nan as NAN
 from pathlib import Path
 import smbus2 as smbus
 import RPi.GPIO as GPIO
-import subprocess
 
 I2C_CHANNEL = 1
 ADDRESS = 0x40
