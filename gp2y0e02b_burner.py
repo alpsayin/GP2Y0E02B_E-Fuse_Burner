@@ -117,6 +117,10 @@ def EFuseSlaveID(newID):
     wire.write_sequence(ADDRESS, 0xEC, 0x7F)
     print("Data = 0x7F is set in Address = 0xEC")
 
+    checkSum = wire.read_sequence(ADDRESS, 0x27)
+    if (checkSum & 0b11111) != 1:
+        print(f"Checksum? is {checkSum:0b}")
+
     if ENABLE_VERIFICATION:
         checkSum = wire.read_sequence(ADDRESS, 0x27)
         # if (checkSum & 0b11111) != 1:
