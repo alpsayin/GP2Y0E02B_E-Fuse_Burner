@@ -119,7 +119,7 @@ def EFuseSlaveID(newID):
 
     checkSum = wire.read_sequence(ADDRESS, 0x27)
     if (checkSum & 0b11111) != 1:
-        print(f"Checksum? is {checkSum:0b}")
+        print(f"Checksum? is 0b{checkSum:0b}")
 
     if ENABLE_VERIFICATION:
         checkSum = wire.read_sequence(ADDRESS, 0x27)
