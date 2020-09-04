@@ -280,6 +280,9 @@ def main():
         print(f'Nothing to do; exiting...')
         sys.exit(1)
 
+    if DRY_RUN:
+        print(f'*** Running in dry-run mode. Nothing will be written. ***')
+
     setup(dev=I2C_CHANNEL)
     loop()
     sys.exit(0)
