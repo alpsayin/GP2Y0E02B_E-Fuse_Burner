@@ -82,8 +82,8 @@ def EFuseSlaveID(newID):
     print("Stage 5 started.")
     wire.write_sequence(ADDRESS, 0xCA, 0x01)
     print("Data = 0x01 is set in Address = 0xCA")
-    print("Wait for >500 us (set to 1000 because an RPi is significantly faster than an Arduino)")
-    time.sleep(1e-6*1000)
+    print("Wait for 500 us")
+    time.sleep(1e-6*500)
 
     print("Stage 6 started.")
     wire.write_sequence(ADDRESS, 0xCA, 0x00)
@@ -147,8 +147,8 @@ def EFuseSlaveID(newID):
             print("Stage 10 - 5 started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x01)
             print("Data = 0x01 is set in Address = 0xCA")
-            time.sleep(1e-6*1000)
-            print("Wait for >500 us.")
+            time.sleep(1e-6*500)
+            print("Wait for 500 us.")
 
             print("Stage 10 - 6 started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x00)
