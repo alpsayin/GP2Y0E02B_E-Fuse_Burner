@@ -7,14 +7,10 @@
 # Description: E-Fuse programmer for SHARP GP2Y0E02B, GP2Y0E03
 # -----------------------------------------------
 
-
-import random
 import sys
 import time
 import traceback
 import argparse
-from math import nan as NAN
-from pathlib import Path
 import smbus2 as smbus
 import RPi.GPIO as GPIO
 
