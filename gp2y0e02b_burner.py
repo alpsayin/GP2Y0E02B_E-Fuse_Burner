@@ -246,7 +246,7 @@ def loop():
         print(f'0x{dev:0x} ({dev}d)')
     if scan_results:
         if CURRENT_ADDRESS in scan_results:
-            if SETADDR not in scan_results:
+            if (SETADDR >> 1) not in scan_results:
                 if not SCAN_ONLY:
                     EFuseSlaveID(SETADDR)
                 else:
