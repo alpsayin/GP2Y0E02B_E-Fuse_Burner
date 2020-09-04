@@ -119,7 +119,7 @@ def EFuseSlaveID(newID):
 
     if ENABLE_VERIFICATION:
         checkSum = wire.read_sequence(ADDRESS, 0x27)
-        if (checkSum % 16) != 1:
+        if (checkSum & 0b11111) != 1:
             print("ERROR!   >:(\nE-fuse probably broken.")
             print("Data: 0B")
             x27Val = wire.read_sequence(ADDRESS, 0x27)
