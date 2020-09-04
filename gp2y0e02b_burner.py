@@ -58,7 +58,6 @@ class Wire(object):
 def EFuseSlaveID(newID):
     global wire
 
-    # ----- Stage 1 ----- */
     print("Stage 1 started.")
 
     wire.write_sequence(ADDRESS, 0xEC, 0xFF)
@@ -67,37 +66,31 @@ def EFuseSlaveID(newID):
     GPIO.output(VPP_PIN, GPIO.HIGH)
     print("3.3V is applied in the Vpp terminal")
 
-    # ----- Stage 2 ------ */
     print("Stage 2 started.")
     wire.write_sequence(ADDRESS, 0xC8, 0x00)
     print("Data = 0x00 is set in Address = 0xC8")
 
-    # ----- Stage 3 ------ */
     print("Stage 3 started.")
     wire.write_sequence(ADDRESS, 0xC9, 0x45)
     print("Data = 0x45 is set in Address = 0xC9")
 
-    # ----- Stage 4 ------ */
     # THIS IS WHERE THE ADDRESS WILL BE SET! */
     print("Stage 4 started.")
     wire.write_sequence(ADDRESS, 0xCD, newID >> 4)
     print("Data = SETADDR >> 4 is set in Address = 0xCD")
 
-    # ----- Stage 5 ------ */
     print("Stage 5 started.")
     wire.write_sequence(ADDRESS, 0xCA, 0x01)
     print("Data = 0x01 is set in Address = 0xCA")
     print("Wait for >500 us (set to 1000 because an RPi is significantly faster than an Arduino)")
     time.sleep(1e-6*1000)
 
-    # ----- Stage 6 ------ */
     print("Stage 6 started.")
     wire.write_sequence(ADDRESS, 0xCA, 0x00)
     print("Data = 0x00 is set in Address = 0xCA")
     GPIO.output(VPP_PIN, GPIO.LOW)
     print("Vpp terminal grounded.")
 
-    # ----- Stage 7 ------ */
     print("Stage 7 started.")
     wire.write_sequence(ADDRESS, 0xEF, 0x00)
     print("Data = 0x00 is set in Address = 0xEF")
@@ -108,12 +101,10 @@ def EFuseSlaveID(newID):
     wire.write_sequence(ADDRESS, 0xC8, 0x00)
     print("Data = 0x00 is set in Address = 0xC8")
 
-    # ----- Stage 8 ------ */
     print("Stage 8 started.")
     wire.write_sequence(ADDRESS, 0xEE, 0x06)
     print("Data = 0x06 is set in Address = 0xEE")
 
-    # ----- Stage 9 ------ */
     print("Stage 9 started.")
     wire.write_sequence(ADDRESS, 0xEC, 0xFF)
     print("Data = 0xFF is set in Address = 0xEC")
@@ -140,80 +131,67 @@ def EFuseSlaveID(newID):
             x27Val = wire.read_sequence(ADDRESS, 0x27)
             print(f'{x27Val}')
 
-            # ----- Stage 10 - 1 ----- */
             print("Stage 10 - 1 started.")
             wire.write_sequence(ADDRESS, 0xEC, 0xFF)
             print("Data = 0xFF is set in Address = 0xEC")
             GPIO.output(VPP_PIN, GPIO.HIGH)
             print("3.3V is applied in Vpp terminal")
 
-            # ----- Stage 10 - 2 ----- */
             print("Stage 10 - 2 started.")
             wire.write_sequence(ADDRESS, 0xC8, 0x37)
             print("Data = 0x37 is set in Address = 0xC8")
 
-            # ----- Stage 10 - 3 ----- */
             print("Stage 10 - 3 started.")
             wire.write_sequence(ADDRESS, 0xC9, 0x74)
             print("Data = 0x74 is set in Address = 0xC9")
 
-            # ----- Stage 10 - 4 ----- */
             print("Stage 10 - 4 started.")
             wire.write_sequence(ADDRESS, 0xCD, 0x04)
             print("Data = 0x04 is set in Address = 0xCD")
 
-            # ----- Stage 10 - 5 ----- */
             print("Stage 10 - 5 started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x01)
             print("Data = 0x01 is set in Address = 0xCA")
             time.sleep(1e-6*500)
             print("Wait for 500 us.")
 
-            # ----- Stage 10 - 6 ----- */
             print("Stage 10 - 6 started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x00)
             print("Data = 0x00 is set in Address = 0xCA")
             GPIO.output(VPP_PIN, GPIO.LOW)
             print("Vpp terminal is grounded.")
 
-            # ----- Stage 10 - 1' ----- */
             print("Stage 10 - 1' started.")
             wire.write_sequence(ADDRESS, 0xEC, 0xFF)
             print("Data = 0xFF is set in Address = 0xEC")
             GPIO.output(VPP_PIN, GPIO.HIGH)
             print("3.3V is applied in Cpp terminal")
 
-            # ----- Stage 10 - 2' ----- */
             print("Stage 10 - 2' started.")
             wire.write_sequence(ADDRESS, 0xC8, 0x3F)
             print("Data = 0x3F is set in Address = 0xC8")
 
-            # ----- Stage 10 - 3' ----- */
             print("Stage 10 - 3' started.")
             wire.write_sequence(ADDRESS, 0xC9, 0x04)
             print("Data = 0x04 is set in Address = 0xC9")
 
-            # ----- Stage 10 - 4' ----- */
             # THIS IS WHERE THE ADDRESS IS PROGRAMMED */
             print("Stage 10 - 4' started.")
             wire.write_sequence(ADDRESS, 0xCD, newID >> 4)
             print("Data = 0x08 is set in Address = 0xCD")
 
-            # ----- Stage 10 - 5' ----- */
             print("Stage 10 - 5' started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x01)
             print("Data = 0x01 is set in Address = 0xCA")
             time.sleep(1e-6*500)
             print("Wait for 500 us.")
 
-            # ----- Stage 10 - 6' ----- */
             print("Stage 10 - 6' started.")
             wire.write_sequence(ADDRESS, 0xCA, 0x00)
             print("Data = 0x00 is set in Address = 0xCA")
             GPIO.output(VPP_PIN, GPIO.LOW)
             print("Vpp terminal is grounded.")
 
-            # ----- Stage 10 - 7 ------ */
             print("Stage 10 - 7 started.")
             wire.write_sequence(ADDRESS, 0xEF, 0x00)
             print("Data = 0x00 is set in Address = 0xEF")
@@ -224,12 +202,10 @@ def EFuseSlaveID(newID):
             wire.write_sequence(ADDRESS, 0xC8, 0x00)
             print("Data = 0x00 is set in Address = 0xC8")
 
-            # ----- Stage 10 - 8 ------ */
             print("Stage 10 - 8 started.")
             wire.write_sequence(ADDRESS, 0xEE, 0x06)
             print("Data = 0x06 is set in Address = 0xEE")
 
-            # ------ Stage 10 - 9 ----- */
             print("Stage 10 - 9 started.")
             wire.write_sequence(ADDRESS, 0xEC, 0xFF)
             print("Data = 0xFF is set in Address = 0xEC")
