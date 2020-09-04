@@ -249,7 +249,27 @@ def loop():
         print(f'Problem scanning i2c bus')
     return
 
+
+def auto_int(x):
+    '''From https://stackoverflow.com/a/25513044'''
+    return int(x, 0)
+
 def main():
+    global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dev', '--channel', '-d', '-c', dest='dev', type=int, default=1, help='I2C Channel Number')
+    parser.add_argument('--sharp-address', '-s', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help='Current sensor I2C address')
+    parser.add_argument('--new-address', '-s', dest='new_address', type=auto_int, default=SETADDR, help='Desired sensor I2C address')
+    parser.add_argument('--dry-run', '-dr', action='store_true', dest='dry_run', help='Desired sensor I2C address')
+    args = vars(parser.parse_args())
+    print(f'args: {args}')
+
+    I2C_CHANNEL = args['dev']
+    CURRENT_ADDRESS = args['sharp_address']
+    SETADDR = args['new_address']
+    DRY_RUN = args['dry_run']
+
+
     setup(dev=I2C_CHANNEL)
     loop()
     sys.exit(0)
