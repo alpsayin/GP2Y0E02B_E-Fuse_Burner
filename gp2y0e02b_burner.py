@@ -19,6 +19,7 @@ VPP_PIN = 17
 CURRENT_ADDRESS = 0x40
 SETADDR = 0x70 << 1  # 4 MSB, will bitshift when used
 DRY_RUN = False
+SCAN_ONLY = False
 # apparently this didnt quite work for the original author
 ENABLE_VERIFICATION = False
 
@@ -246,7 +247,10 @@ def loop():
     if scan_results:
         if CURRENT_ADDRESS in scan_results:
             if SETADDR not in scan_results:
-                EFuseSlaveID(SETADDR)
+                if not SCAN_ONLY:
+                    EFuseSlaveID(SETADDR)
+                else:
+                    print(f'Ready to write. Stopped because SCAN_ONLY is {SCAN_ONLY}')
             else:
                 print(f'Problem scanning i2c bus: {CURRENT_ADDRESS} found, but {SETADDR} also exists')
         else:
@@ -265,12 +269,13 @@ def clean_exit(*args, **kwargs):
     sys.exit(*args, **kwargs)
 
 def main():
-    global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN
+    global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN, SCAN_ONLY
     parser = argparse.ArgumentParser()
     parser.add_argument('--dev', '--channel', '-d', '-c', dest='dev', type=int, default=1, help='I2C Channel Number')
     parser.add_argument('--current-address', '-ca', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help='Current sensor I2C address')
     parser.add_argument('--new-address', '-na', dest='new_address', type=auto_int, default=SETADDR, help='Desired sensor I2C address')
     parser.add_argument('--dry-run', '-dr', action='store_true', dest='dry_run', help='Desired sensor I2C address')
+    parser.add_argument('--scan-only', '-sc', action='store_true', dest='scan_only', help='If True, doesnt go through the stages. Scans the bus and exits')
     args = vars(parser.parse_args())
     print(f'args: {args}')
 
@@ -278,6 +283,7 @@ def main():
     CURRENT_ADDRESS = args['sharp_address']
     SETADDR = args['new_address']
     DRY_RUN = args['dry_run']
+    SCAN_ONLY = args['scan_only']
 
     if CURRENT_ADDRESS == SETADDR:
         print(f'Target address=0x{SETADDR:0x} is the same as current address=0x{CURRENT_ADDRESS:0x}')
