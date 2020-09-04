@@ -94,10 +94,8 @@ def EFuseSlaveID(newID):
     print("Stage 7 started.")
     wire.write_sequence(ADDRESS, 0xEF, 0x00)
     print("Data = 0x00 is set in Address = 0xEF")
-
     wire.write_sequence(ADDRESS, 0xC8, 0x40)
     print("Data = 0x40 is set in Address = 0xC8")
-
     wire.write_sequence(ADDRESS, 0xC8, 0x00)
     print("Data = 0x00 is set in Address = 0xC8")
 
@@ -108,18 +106,14 @@ def EFuseSlaveID(newID):
     print("Stage 9 started.")
     wire.write_sequence(ADDRESS, 0xEC, 0xFF)
     print("Data = 0xFF is set in Address = 0xEC")
-
     wire.write_sequence(ADDRESS, 0xEF, 0x03)
     print("Data = 0x03 is set in Address = 0xEF")
-
     print("Read out the data in Address = 0x27.")
     print("Data: 0B")
     x27Val = wire.read_sequence(ADDRESS, 0x27)
     print(f'{x27Val}')
-
     wire.write_sequence(ADDRESS, 0xEF, 0x00)
     print("Data = 0x00 is set in Address = 0xEF")
-
     wire.write_sequence(ADDRESS, 0xEC, 0x7F)
     print("Data = 0x7F is set in Address = 0xEC")
 
