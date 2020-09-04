@@ -285,7 +285,7 @@ def main():
         clean_exit(1)
 
     if DRY_RUN:
-        print(f'*** Running in dry-run mode. Nothing will be written. ***')
+        print(f'##### Running in DRY-RUN mode. Nothing will be written. #####')
 
     setup(dev=I2C_CHANNEL)
     loop()
