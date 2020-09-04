@@ -1,8 +1,11 @@
 # Python Version
 
 This repository attempts to translate the below Arduino project to an RPi compatible burner.
+
 https://github.com/martinpalsson/GP2Y0E02B_E-Fuse_Burner
+
 v1 Tag of this software is now confirmed working. There is no reason the b1.1beta tag shouldn't work.
+
 But decision is yours if you want to be on the safe side.
 
 # GP2Y0E02B_E-Fuse_Burner
