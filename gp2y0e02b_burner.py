@@ -236,7 +236,7 @@ def loop():
     scan_results = wire.scan_bus()
     print(f'I2C Bus scan results:')
     for dev in scan_results:
-        print(f'{dev:0x} ({dev}d)')
+        print(f'0x{dev:0x} ({dev}d)')
     if scan_results:
         EFuseSlaveID(SETADDR)
     else:
