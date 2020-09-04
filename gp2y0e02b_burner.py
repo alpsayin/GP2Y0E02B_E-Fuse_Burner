@@ -281,7 +281,7 @@ def main():
 
     I2C_CHANNEL = args['dev']
     CURRENT_ADDRESS = args['sharp_address']
-    SETADDR = args['new_address']
+    SETADDR = args['new_address'] << 1
     DRY_RUN = args['dry_run']
     SCAN_ONLY = args['scan_only']
 
