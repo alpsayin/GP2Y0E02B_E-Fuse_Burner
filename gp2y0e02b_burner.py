@@ -244,9 +244,15 @@ def loop():
     for dev in scan_results:
         print(f'0x{dev:0x} ({dev}d)')
     if scan_results:
-        EFuseSlaveID(SETADDR)
+        if CURRENT_ADDRESS in scan_results:
+            if SETADDR not in scan_results:
+                EFuseSlaveID(SETADDR)
+            else:
+                print(f'Problem scanning i2c bus: {CURRENT_ADDRESS} found, but {SETADDR} also exists')
+        else:
+            print(f'Problem scanning i2c bus: {CURRENT_ADDRESS} not found')
     else:
-        print(f'Problem scanning i2c bus')
+        print(f'Problem scanning i2c bus: no i2c devices found')
     return
 
 
