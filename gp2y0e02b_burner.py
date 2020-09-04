@@ -260,6 +260,10 @@ def auto_int(x):
     '''From https://stackoverflow.com/a/25513044'''
     return int(x, 0)
 
+def clean_exit(*args, **kwargs):
+    GPIO.cleanup()
+    sys.exit(*args, **kwargs)
+
 def main():
     global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN
     parser = argparse.ArgumentParser()
@@ -278,19 +282,18 @@ def main():
     if CURRENT_ADDRESS == SETADDR:
         print(f'Target address=0x{SETADDR:0x} is the same as current address=0x{CURRENT_ADDRESS:0x}')
         print(f'Nothing to do; exiting...')
-        sys.exit(1)
+        clean_exit(1)
 
     if DRY_RUN:
         print(f'*** Running in dry-run mode. Nothing will be written. ***')
 
     setup(dev=I2C_CHANNEL)
     loop()
-    sys.exit(0)
 
 if __name__ == "__main__":
     try:
         main()
-        GPIO.cleanup()
+        clean_exit(0)
     except Exception as ex:
         GPIO.cleanup()
         raise ex
