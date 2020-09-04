@@ -252,9 +252,9 @@ def loop():
                 else:
                     print(f'Ready to write. Stopped because SCAN_ONLY is {SCAN_ONLY}')
             else:
-                print(f'Problem scanning i2c bus: {CURRENT_ADDRESS} found, but {SETADDR} also exists')
+                print(f'Problem scanning i2c bus: 0x{CURRENT_ADDRESS:02x} ({CURRENT_ADDRESS}d) found, but 0x{SETADDR:02x} ({SETADDR}d) also exists')
         else:
-            print(f'Problem scanning i2c bus: {CURRENT_ADDRESS} not found')
+            print(f'Problem scanning i2c bus: 0x{CURRENT_ADDRESS:02x} ({CURRENT_ADDRESS}d) not found')
     else:
         print(f'Problem scanning i2c bus: no i2c devices found')
     return
@@ -286,7 +286,7 @@ def main():
     SCAN_ONLY = args['scan_only']
 
     if CURRENT_ADDRESS == SETADDR:
-        print(f'Target address=0x{SETADDR:0x} is the same as current address=0x{CURRENT_ADDRESS:0x}')
+        print(f'Target address=0x{SETADDR:0x} ({SETADDR}d) is the same as current address=0x{CURRENT_ADDRESS:0x} ({CURRENT_ADDRESS}d)')
         print(f'Nothing to do; exiting...')
         clean_exit(1)
 
