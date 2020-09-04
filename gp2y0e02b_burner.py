@@ -269,6 +269,10 @@ def main():
     SETADDR = args['new_address']
     DRY_RUN = args['dry_run']
 
+    if CURRENT_ADDRESS == SETADDR:
+        print(f'Target address=0x{SETADDR:0x} is the same as current address=0x{CURRENT_ADDRESS:0x}')
+        print(f'Nothing to do; exiting...')
+        sys.exit(1)
 
     setup(dev=I2C_CHANNEL)
     loop()
