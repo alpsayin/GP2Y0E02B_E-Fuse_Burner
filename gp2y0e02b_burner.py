@@ -22,6 +22,7 @@ VPP_PIN = 17
 CURRENT_ADDRESS = 0x40
 SETADDR = 0x70 << 1  # 4 MSB, will bitshift when used
 ENABLE_VERIFICATION = False  # apparently this didnt quite work for the original author
+DRY_RUN = False
 
 wire = None
 
@@ -63,7 +64,8 @@ def EFuseSlaveID(newID):
     wire.write_sequence(CURRENT_ADDRESS, 0xEC, 0xFF)
     print("Data = 0xFF is set in Address = 0xEC")
 
-    GPIO.output(VPP_PIN, GPIO.HIGH)
+    if not DRY_RUN:
+        GPIO.output(VPP_PIN, GPIO.HIGH)
     print("3.3V is applied in the Vpp terminal")
 
     print("Stage 2 started.")
@@ -88,7 +90,8 @@ def EFuseSlaveID(newID):
     print("Stage 6 started.")
     wire.write_sequence(CURRENT_ADDRESS, 0xCA, 0x00)
     print("Data = 0x00 is set in Address = 0xCA")
-    GPIO.output(VPP_PIN, GPIO.LOW)
+    if not DRY_RUN:
+        GPIO.output(VPP_PIN, GPIO.LOW)
     print("Vpp terminal grounded.")
 
     print("Stage 7 started.")
@@ -133,7 +136,8 @@ def EFuseSlaveID(newID):
             print("Stage 10 - 1 started.")
             wire.write_sequence(CURRENT_ADDRESS, 0xEC, 0xFF)
             print("Data = 0xFF is set in Address = 0xEC")
-            GPIO.output(VPP_PIN, GPIO.HIGH)
+            if not DRY_RUN:
+                GPIO.output(VPP_PIN, GPIO.HIGH)
             print("3.3V is applied in Vpp terminal")
 
             print("Stage 10 - 2 started.")
@@ -157,13 +161,15 @@ def EFuseSlaveID(newID):
             print("Stage 10 - 6 started.")
             wire.write_sequence(CURRENT_ADDRESS, 0xCA, 0x00)
             print("Data = 0x00 is set in Address = 0xCA")
-            GPIO.output(VPP_PIN, GPIO.LOW)
+            if not DRY_RUN:
+                GPIO.output(VPP_PIN, GPIO.LOW)
             print("Vpp terminal is grounded.")
 
             print("Stage 10 - 1' started.")
             wire.write_sequence(CURRENT_ADDRESS, 0xEC, 0xFF)
             print("Data = 0xFF is set in Address = 0xEC")
-            GPIO.output(VPP_PIN, GPIO.HIGH)
+            if not DRY_RUN:
+                GPIO.output(VPP_PIN, GPIO.HIGH)
             print("3.3V is applied in Cpp terminal")
 
             print("Stage 10 - 2' started.")
@@ -188,7 +194,8 @@ def EFuseSlaveID(newID):
             print("Stage 10 - 6' started.")
             wire.write_sequence(CURRENT_ADDRESS, 0xCA, 0x00)
             print("Data = 0x00 is set in Address = 0xCA")
-            GPIO.output(VPP_PIN, GPIO.LOW)
+            if not DRY_RUN:
+                GPIO.output(VPP_PIN, GPIO.LOW)
             print("Vpp terminal is grounded.")
 
             print("Stage 10 - 7 started.")
