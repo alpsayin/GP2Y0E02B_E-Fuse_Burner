@@ -245,4 +245,9 @@ def main():
     return 0
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+        GPIO.cleanup()
+    except Exception as ex:
+        GPIO.cleanup()
+        raise ex
