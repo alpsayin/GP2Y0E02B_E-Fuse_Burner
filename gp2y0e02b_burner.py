@@ -9,6 +9,7 @@
 
 
 import random
+import sys
 import time
 import traceback
 import argparse
@@ -255,7 +256,7 @@ def loop():
 def main():
     setup(dev=I2C_CHANNEL)
     loop()
-    return 0
+    sys.exit(0)
 
 if __name__ == "__main__":
     try:
