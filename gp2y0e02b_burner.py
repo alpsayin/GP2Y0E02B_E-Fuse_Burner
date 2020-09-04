@@ -236,6 +236,7 @@ def setup(dev):
     global wire
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(VPP_PIN, GPIO.OUT)
+    GPIO.output(VPP_PIN, GPIO.LOW)
     wire = Wire(dev=dev)
 
 def loop():
