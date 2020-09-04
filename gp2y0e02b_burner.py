@@ -264,8 +264,8 @@ def main():
     global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN
     parser = argparse.ArgumentParser()
     parser.add_argument('--dev', '--channel', '-d', '-c', dest='dev', type=int, default=1, help='I2C Channel Number')
-    parser.add_argument('--sharp-address', '-s', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help='Current sensor I2C address')
-    parser.add_argument('--new-address', '-s', dest='new_address', type=auto_int, default=SETADDR, help='Desired sensor I2C address')
+    parser.add_argument('--current-address', '-ca', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help='Current sensor I2C address')
+    parser.add_argument('--new-address', '-na', dest='new_address', type=auto_int, default=SETADDR, help='Desired sensor I2C address')
     parser.add_argument('--dry-run', '-dr', action='store_true', dest='dry_run', help='Desired sensor I2C address')
     args = vars(parser.parse_args())
     print(f'args: {args}')
