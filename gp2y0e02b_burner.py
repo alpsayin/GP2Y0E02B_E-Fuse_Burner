@@ -21,7 +21,7 @@ I2C_CHANNEL = 1
 ADDRESS = 0x40
 VPP_PIN = 18
 SETADDR = 0xE0  # 4 MSB, will bitshift when used
-ENABLE_VERIFICATION = False
+ENABLE_VERIFICATION = False  # apparently this didnt quite work for the original author
 
 wire = None
 
