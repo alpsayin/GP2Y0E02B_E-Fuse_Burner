@@ -270,12 +270,12 @@ def clean_exit(*args, **kwargs):
 
 def main():
     global I2C_CHANNEL, CURRENT_ADDRESS, SETADDR, DRY_RUN, SCAN_ONLY
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--dev', '--channel', '-d', '-c', dest='dev', type=int, default=1, help='I2C Channel Number')
-    parser.add_argument('--current-address', '-ca', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help='Current sensor I2C address')
-    parser.add_argument('--new-address', '-na', dest='new_address', type=auto_int, default=SETADDR, help='Desired sensor I2C address')
-    parser.add_argument('--dry-run', '-dr', action='store_true', dest='dry_run', help='Desired sensor I2C address')
-    parser.add_argument('--scan-only', '-sc', action='store_true', dest='scan_only', help='If True, doesnt go through the stages. Scans the bus and exits')
+    parser = argparse.ArgumentParser(description=f'Sample usage {sys.modules[__name__].__file__[:-3]} -d 1 -ca 0x40 -na 0x70 --dry-run')
+    parser.add_argument('--dev', '--channel', '-d', '-c', dest='dev', type=int, default=1, help=f'I2C Channel Number (pi has 0 and 1, you\'re likely gonna use 1 hence the default is {I2C_CHANNEL}')
+    parser.add_argument('--current-address', '-ca', dest='sharp_address', type=auto_int, default=CURRENT_ADDRESS, help=f'Current sensor I2C address, default is {CURRENT_ADDRESS}')
+    parser.add_argument('--new-address', '-na', dest='new_address', type=auto_int, default=SETADDR, help=f'Desired sensor I2C address, default is {SETADDR}, because Martin says so.')
+    parser.add_argument('--dry-run', '-dr', action='store_true', dest='dry_run', help='Do not pull the VPP pin HIGH. I2C operations are still performed but E-FUSE wouldn\'t really bite')
+    parser.add_argument('--scan-only', '-sc', action='store_true', dest='scan_only', help='If True, doesnt go through the stages. Scans the bus and exits. Even safer than the dry-run option.')
     args = vars(parser.parse_args())
     print(f'args: {args}')
 
